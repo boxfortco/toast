@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cooking with Dr. Toast | BoxFort Kitchen</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #7DD3FC;
+            --toast-tan: #E5C396;
+            --crust-brown: #8B5A2B;
+            --accent-green: #4ADE80;
+            --bg-color: #F0F9FF;
+            --text-main: #334155;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Fredoka', sans-serif;
+            color: var(--crust-brown);
+        }
+
+        /* Nav */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            font-family: 'Fredoka', sans-serif;
+            color: var(--crust-brown);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .cta-button {
+            background-color: var(--accent-green);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 15px rgba(74, 222, 128, 0.4);
+            transition: transform 0.2s, box-shadow 0.2s;
+            font-family: 'Fredoka', sans-serif;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(74, 222, 128, 0.6);
+        }
+
+        /* Hero Section */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 60px 5%;
+            background-image: url('kitchen.jpg');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            min-height: 80vh;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(240, 249, 255, 0.85); /* Light blue overlay */
+            backdrop-filter: blur(3px);
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 50%;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 0px white;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        .hero-image-container {
+            position: relative;
+            z-index: 1;
+            width: 45%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero-image-container img.toast {
+            width: 100%;
+            max-width: 400px;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(2deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        /* Features Grid */
+        .features {
+            padding: 80px 5%;
+            text-align: center;
+            background: white;
+        }
+
+        .features h2 {
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .card {
+            background: var(--bg-color);
+            padding: 40px 20px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--primary-blue);
+        }
+
+        /* Screenshot Gallery */
+        .gallery {
+            padding: 80px 5%;
+            background: var(--primary-blue);
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .gallery h2 {
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 0px rgba(0,0,0,0.1);
+        }
+
+        .gallery-track {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .gallery-track img {
+            width: 250px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            border: 4px solid white;
+        }
+
+        /* Parent Feature Section */
+        .parent-feature {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 50px;
+            padding: 80px 5%;
+            background: white;
+        }
+
+        .parent-content {
+            max-width: 500px;
+        }
+
+        .parent-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--accent-green);
+        }
+
+        .selfie-img {
+            max-width: 400px;
+            transform: rotate(-3deg);
+            border-radius: 10px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--crust-brown);
+            color: white;
+            text-align: center;
+            padding: 40px 5%;
+        }
+
+        footer a {
+            color: var(--toast-tan);
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding-top: 100px;
+            }
+            .hero-content {
+                max-width: 100%;
+                margin-bottom: 40px;
+            }
+            .hero h1 { font-size: 3rem; }
+            .hero-image-container { width: 80%; }
+            .parent-feature { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">🍞 BoxFort Kitchen</div>
+        <a href="https://apps.apple.com/us/app/cooking-with-dr-toast/id6759202499" class="cta-button">Get the App</a>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>The Most Toasty Way to Master the Kitchen!</h1>
+            <p>Turn "screen time" into "family mealtime". Join Dr. Toast for gamified, step-by-step recipes kids love, plus easy weekend meal planning for parents.</p>
+            <a href="https://apps.apple.com/us/app/cooking-with-dr-toast/id6759202499" class="cta-button" style="display: inline-block; font-size: 1.3rem; padding: 15px 35px;">Download on the App Store</a>
+        </div>
+        <div class="hero-image-container">
+            <img src="toast_certificate.png" alt="Dr. Toast" class="toast">
+        </div>
+    </section>
+
+    <section class="features">
+        <h2>Why Kids (and Parents) Love It</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>🎮 Gamified Kitchen Goals</h3>
+                <p>Keep the culinary flame alive! Kids earn XP, build cooking streaks, and unlock exclusive badges as they level up from kitchen novice to Master Chef.</p>
+            </div>
+            <div class="card">
+                <h3>🔍 The Great Ingredient Hunt</h3>
+                <p>Prep work is now a mini-game. Kids complete a fun scavenger hunt to find and check off their ingredients before the cooking even begins.</p>
+            </div>
+            <div class="card">
+                <h3>🗣️ Hands-Free Mode</h3>
+                <p>Messy hands? No problem. Use simple voice commands to read instructions or move to the next step without ever smudging the screen.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="gallery">
+        <h2>Step-by-Step Animated Fun!</h2>
+        <div class="gallery-track">
+            <img src="1.png" alt="App Screen 1">
+            <img src="2.png" alt="App Screen 2">
+            <img src="3.png" alt="App Screen 3">
+            <img src="4.png" alt="App Screen 4">
+        </div>
+    </section>
+
+    <section class="parent-feature">
+        <img src="selfie.png" alt="Happy kid cooking" class="selfie-img">
+        <div class="parent-content">
+            <h2>The Ultimate Parent Hack</h2>
+            <p>Let the kids take the lead! Hand them the app to pick out three weekend meals, and we'll automatically generate a shopping list. Parents can then send all the ingredients directly to their <strong>Walmart grocery cart with a single tap.</strong></p>
+            <br>
+            <p>Plus, easily filter recipes by allergies and dietary restrictions to keep your kitchen perfectly safe for your family.</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 BoxFort Kitchen. All rights reserved.</p>
+        <br>
+        <p>
+            <a href="https://www.boxfort.co/cooking-privacy-policy">Privacy Policy</a> | 
+            <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Terms of Use</a>
+        </p>
+    </footer>
+
+</body>
+</html>
